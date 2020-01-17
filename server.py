@@ -7,13 +7,12 @@ from picamera import PiCamera
 camera = PiCamera()
 camera.rotation = 180
 camera.resolution = (300, 300)
-camera.framerate = 15
 
 class WebSocket(tornado.websocket.WebSocketHandler):
     
     def open(self):
         print("[WS]: opened")
-        self.camera_loop = PeriodicCallback(self.loop, 500)
+        self.camera_loop = PeriodicCallback(self.loop, 100)
         self.camera_loop.start()
 
     def on_message(self, message):
